@@ -13,6 +13,14 @@ public abstract class BasePage {
         driver = wd;
     }
 
+    public void pause(int time){
+        try {
+            Thread.sleep(time * 1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static <T extends BasePage> T clickButtonsHomePageMenuItem(HomePageMenuItem homePageMenuItem) {
         WebElement element = driver.findElement(
                 By.xpath("//a[text()='" + homePageMenuItem.getLocator() + "']"));
