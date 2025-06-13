@@ -13,8 +13,8 @@ public class DynamicIDPage extends BasePage{
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
     }
 
-    //@FindBy(css = "button[class = 'btn btn-primary']")
-    //WebElement btnDynamicID;
+    @FindBy(css = "button[class = 'btn btn-primary']")
+    WebElement btnDynamicID;
 
     public boolean validateBtnIdentification(){
         String selector = "button[class = 'btn btn-primary']";
@@ -23,13 +23,10 @@ public class DynamicIDPage extends BasePage{
     }
 
     public boolean validateID(){
-        String selector = "button[class = 'btn btn-primary']";
-        WebElement btn = driver.findElement(By.cssSelector(selector));
-        btn.click();
-        String idBefore = btn.getAttribute("id");
+        btnDynamicID.click();
+        String idBefore = btnDynamicID.getAttribute("id");
         driver.navigate().refresh();
-        pause(3);
-        String idAfter = btn.getAttribute("id");
+        String idAfter = btnDynamicID.getAttribute("id");
         return idAfter.equals(idBefore);
     }
 
