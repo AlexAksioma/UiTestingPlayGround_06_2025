@@ -4,6 +4,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,13 +18,16 @@ public class ClassAttributePage extends BasePage {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
     }
 
+    @FindBy(className = "btn-primary")
+    WebElement btn1;
+
     public boolean validateButtonClass(){
         WebElement btn = driver.findElement(By.className("btn-primary"));
         btn.click();
         Alert alert = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.alertIsPresent());
-        System.out.println(alert.getText());
+        String alertText = alert.getText();
         alert.accept();
-        return false;
+        return alertText.contains("Primary button pressed");
     }
 }

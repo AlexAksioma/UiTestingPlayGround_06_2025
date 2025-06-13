@@ -1,6 +1,7 @@
 package ui_tests;
 
 import manager.AppManager;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.ClassAttributePage;
@@ -17,6 +18,6 @@ public class ClassAttributeTests extends AppManager {
     public void classAttributeTest(){
         HomePage homePage = new HomePage(getDriver());
         classAttributePage = clickButtonsHomePageMenuItem(HomePageMenuItem.CLASS_ATTRIBUTE);
-        classAttributePage.validateButtonClass();
+        Assert.assertTrue(classAttributePage.validateButtonClass());
     }
 }
